@@ -1,0 +1,448 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Exam 2},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Exam 2}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\#Exam 2 - Data Science for the Social World \#\#Laura Morales
+\#\#\#June 28, 2021 \textbf{1. Please clear the environment in R.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{(}\AttributeTok{all=}\ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{2. Load the college\_scorecard dataset in R, and call it
+``college\_scorecard''.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(rio) }\CommentTok{\#rio package to load data}
+\NormalTok{college\_scorecard }\OtherTok{=} \FunctionTok{import}\NormalTok{(}\StringTok{"2021\_exam2\_data.xlsx"}\NormalTok{, }\AttributeTok{which=}\DecValTok{4}\NormalTok{) }\CommentTok{\#load data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Provide summary statistics for the college\_scorecard dataset.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(college\_scorecard)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      unitid        inst_name          state_abbr       
+##  Min.   :100654   Length:48445       Length:48445      
+##  1st Qu.:163532   Class :character   Class :character  
+##  Median :212115   Mode  :character   Mode  :character  
+##  Mean   :260438                                        
+##  3rd Qu.:409120                                        
+##  Max.   :490009                                        
+##                                                        
+##  pred_degree_awarded_ipeds      year       earnings_med    count_not_working
+##  Min.   :1.000             Min.   :2007   Min.   :  8400   Min.   :    0.0  
+##  1st Qu.:1.000             1st Qu.:2011   1st Qu.: 24700   1st Qu.:   46.0  
+##  Median :2.000             Median :2012   Median : 31600   Median :  115.0  
+##  Mean   :1.913             Mean   :2012   Mean   : 33348   Mean   :  369.4  
+##  3rd Qu.:3.000             3rd Qu.:2014   3rd Qu.: 39800   3rd Qu.:  300.0  
+##  Max.   :3.000             Max.   :2016   Max.   :186500   Max.   :15960.0  
+##                                           NA's   :15706    NA's   :15801    
+##  count_working  
+##  Min.   :    8  
+##  1st Qu.:  210  
+##  Median :  594  
+##  Mean   : 2073  
+##  3rd Qu.: 1477  
+##  Max.   :94724  
+##  NA's   :14772
+\end{verbatim}
+
+\textbf{4. students who graduated from four-year+ colleges and
+universities located in Texas (state\_abbr: ``TX'') and Louisiana
+(state\_abbr: ``LA''). Call the resulting data frame
+``small\_scorecard''.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{small\_scorecard }\OtherTok{=} \FunctionTok{subset}\NormalTok{(college\_scorecard, college\_scorecard}\SpecialCharTok{$}\NormalTok{state\_abbr }\SpecialCharTok{==} \StringTok{\textquotesingle{}TX\textquotesingle{}} \SpecialCharTok{|}\NormalTok{ college\_scorecard}\SpecialCharTok{$}\NormalTok{state\_abbr }\SpecialCharTok{==} \StringTok{\textquotesingle{}LA\textquotesingle{}}\NormalTok{) }\CommentTok{\#subset the colleges based on the states abbreviation}
+\NormalTok{small\_scorecard }\OtherTok{=} \FunctionTok{subset}\NormalTok{(small\_scorecard, small\_scorecard}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{\textgreater{}=} \DecValTok{2014}\NormalTok{)}\CommentTok{\#subset the colleges based on the lower limit of the year}
+\NormalTok{small\_scorecard }\OtherTok{=} \FunctionTok{subset}\NormalTok{(small\_scorecard, small\_scorecard}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{\textless{}} \DecValTok{2016}\NormalTok{)}\CommentTok{\#subset the colleges based on the upper limit of the year}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{5. Collapse the ``small\_scorecard'' data frame to get both (a)
+the average of number people working who graduated from universities in
+Texas and Lousiana; and (b) the total number of people working who
+graduated from universities in Texas and Lousiana. Call your resulting
+data frame ``even\_smaller\_scorecard''. (Hint: Your resulting data
+frame should only have two observations--one for Texas, the other for
+Lousiana.)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#load the dplyr library}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#pipe the small score card}
+\NormalTok{even\_smaller\_scorecard }\OtherTok{\textless{}{-}}\NormalTok{  small\_scorecard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{na.omit}\NormalTok{(small\_scorecard, }\AttributeTok{select=} \FunctionTok{c}\NormalTok{(}\StringTok{"count\_not\_working"}\NormalTok{, }\StringTok{"count\_working"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#drop the na values}
+  \FunctionTok{group\_by}\NormalTok{(state\_abbr) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#group the states }
+  \FunctionTok{summarize}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric), sum)) }\CommentTok{\#summarize count the amount of degrees}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{6. Use the ``even\_smaller\_scorecard'' data frame to provide a
+bar graph detail- ing the percent of people working. Make sure to label
+the axes and provide an appropriate title for the graph. (Hint: you will
+need to create a new variable to answer this question.)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{even\_smaller\_scorecard}\SpecialCharTok{$}\NormalTok{percent\_working }\OtherTok{\textless{}{-}}\NormalTok{ (even\_smaller\_scorecard}\SpecialCharTok{$}\NormalTok{count\_not\_working }\SpecialCharTok{/}\NormalTok{ (even\_smaller\_scorecard}\SpecialCharTok{$}\NormalTok{count\_not\_working}\SpecialCharTok{+}\NormalTok{even\_smaller\_scorecard}\SpecialCharTok{$}\NormalTok{count\_working))}\SpecialCharTok{*}\DecValTok{100}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{barplot }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{ even\_smaller\_scorecard, }\FunctionTok{aes}\NormalTok{(even\_smaller\_scorecard}\SpecialCharTok{$}\NormalTok{state\_abbr, even\_smaller\_scorecard}\SpecialCharTok{$}\NormalTok{percent\_working))}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"State"}\NormalTok{, }
+       \AttributeTok{y=} \StringTok{"Percent of people working"}\NormalTok{,}
+       \AttributeTok{title=} \StringTok{"Percent of students working in the state"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(barplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Use of `even_smaller_scorecard$state_abbr` is discouraged. Use
+## `state_abbr` instead.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Use of `even_smaller_scorecard$percent_working` is discouraged. Use
+## `percent_working` instead.
+\end{verbatim}
+
+\includegraphics{Exam-2_files/figure-latex/unnamed-chunk-6-1.pdf}
+\textbf{7. On the basis of your graph, did people who graduated from
+four-year colleges/universities located in Texas or Louisiana have a
+better chance of being employed? More broadly, do you think that going
+to college/university in one state gives people a better chance at
+getting a job? (Hints: (a) you will want to take a look at the summary
+statistics of the ``even\_smaller\_scorecard'' data frame; and (b) you
+will want to take a look at the universities included in the
+``smaller\_scorecard'')} The people who graduated from colleges and
+universities located in Texas have a better chance of being employed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(even\_smaller\_scorecard) }\CommentTok{\#summary of the two states}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   state_abbr            unitid          pred_degree_awarded_ipeds
+##  Length:2           Min.   : 23369594   Min.   :144.0            
+##  Class :character   1st Qu.: 45647498   1st Qu.:259.8            
+##  Mode  :character   Median : 67925402   Median :375.5            
+##                     Mean   : 67925402   Mean   :375.5            
+##                     3rd Qu.: 90203307   3rd Qu.:491.2            
+##                     Max.   :112481211   Max.   :607.0            
+##       year         earnings_med      count_not_working count_working   
+##  Min.   :167162   Min.   : 2499300   Min.   : 36477    Min.   :205786  
+##  1st Qu.:298072   1st Qu.: 4573125   1st Qu.: 63268    1st Qu.:343627  
+##  Median :428982   Median : 6646950   Median : 90058    Median :481468  
+##  Mean   :428982   Mean   : 6646950   Mean   : 90058    Mean   :481468  
+##  3rd Qu.:559892   3rd Qu.: 8720775   3rd Qu.:116848    3rd Qu.:619310  
+##  Max.   :690802   Max.   :10794600   Max.   :143639    Max.   :757151  
+##  percent_working
+##  Min.   :15.06  
+##  1st Qu.:15.28  
+##  Median :15.50  
+##  Mean   :15.50  
+##  3rd Qu.:15.72  
+##  Max.   :15.95
+\end{verbatim}
+
+\textbf{8. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(rio)}
+\NormalTok{avocados }\OtherTok{=} \FunctionTok{import}\NormalTok{(}\StringTok{"2021\_exam2\_data.xlsx"}\NormalTok{, }\AttributeTok{which=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{9. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v tibble  3.1.2     v purrr   0.3.4
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{avocados }\OtherTok{\textless{}{-}}\NormalTok{ avocados }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{year =}\NormalTok{ lubridate}\SpecialCharTok{::}\FunctionTok{year}\NormalTok{(avocados}\SpecialCharTok{$}\NormalTok{date))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{10. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#add World development indicators (WDI)}
+\FunctionTok{library}\NormalTok{(WDI) }\CommentTok{\#load WDI package}
+\NormalTok{deflator }\OtherTok{=} \FunctionTok{WDI}\NormalTok{(}\AttributeTok{country =} \StringTok{"US"}\NormalTok{, }\AttributeTok{indicator =} \FunctionTok{c}\NormalTok{(}\StringTok{"NY.GDP.DEFL.ZS"}\NormalTok{), }\AttributeTok{start =} \DecValTok{1960}\NormalTok{, }\AttributeTok{end =} \DecValTok{2018}\NormalTok{, }\AttributeTok{extra =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{cache =} \ConstantTok{NULL}\NormalTok{) }\CommentTok{\#create variable from the package}
+\FunctionTok{library}\NormalTok{(data.table) }\CommentTok{\#load data table package}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'data.table'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:lubridate':
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+##     yday, year
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     transpose
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:dplyr':
+## 
+##     between, first, last
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setnames}\NormalTok{(deflator, }\StringTok{"NY.GDP.DEFL.ZS"}\NormalTok{, }\StringTok{"deflator"}\NormalTok{) }\CommentTok{\#rename}
+\NormalTok{deflated\_data }\OtherTok{=} \FunctionTok{left\_join}\NormalTok{(}\AttributeTok{x=}\NormalTok{avocados,}
+                          \AttributeTok{y=}\NormalTok{deflator,}
+                          \AttributeTok{by=}\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{) }\CommentTok{\#left join the deflator and avocados dataframs}
+\NormalTok{deflated\_data}\SpecialCharTok{$}\NormalTok{deflated\_amount }\OtherTok{=}\NormalTok{ deflated\_data}\SpecialCharTok{$}\NormalTok{average\_price}\SpecialCharTok{/}\NormalTok{(deflated\_data}\SpecialCharTok{$}\NormalTok{deflator}\SpecialCharTok{/}\DecValTok{100}\NormalTok{) }\CommentTok{\#adjust for inflation}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{11. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{collapsed\_avocados }\OtherTok{\textless{}{-}}\NormalTok{ deflated\_data }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(year) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#group the year }
+  \FunctionTok{summarize}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric), mean)) }\CommentTok{\#summarize mean price}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{12. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wide\_avocados }\OtherTok{\textless{}{-}}\NormalTok{ collapsed\_avocados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{id\_cols =} \FunctionTok{c}\NormalTok{ ( }\StringTok{"total\_volume"}\NormalTok{, }\StringTok{"average\_price"}\NormalTok{, }\StringTok{"year"}\NormalTok{), }\AttributeTok{names\_from =} \StringTok{"year"}\NormalTok{, }\AttributeTok{values\_from =} \StringTok{"deflated\_amount"}\NormalTok{ )}\CommentTok{\#omake the year the columns}
+\FunctionTok{head}\NormalTok{(wide\_avocados)}\CommentTok{\#only see the first five values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 6
+##   total_volume average_price `2015` `2016` `2017` `2018`
+##          <dbl>         <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+## 1     5681498.          1.02   1.02  NA     NA     NA   
+## 2     6105539.          1.05  NA      1.04  NA     NA   
+## 3     5834479.          1.25  NA     NA      1.22  NA   
+## 4     6786962.          1.08  NA     NA     NA      1.02
+\end{verbatim}
+
+\textbf{13. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(data.table)}\CommentTok{\#load library}
+\FunctionTok{setnames}\NormalTok{(wide\_avocados, }\StringTok{"total\_volume"}\NormalTok{, }\StringTok{"avocado\_total\_volume"}\NormalTok{)}\CommentTok{\#set names to be more descriptive }
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{14. }
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{college\_scorecard }\OtherTok{=} \FunctionTok{import}\NormalTok{(}\StringTok{"2021\_exam2\_data.xlsx"}\NormalTok{, }\AttributeTok{which=}\DecValTok{4}\NormalTok{) }\CommentTok{\#load data}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{15. }
+
+\textbf{16. }
+
+\end{document}

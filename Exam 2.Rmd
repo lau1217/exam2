@@ -1,0 +1,135 @@
+---
+title: "Exam 2"
+output:
+  word_document: default
+  pdf_document: default
+---
+#Exam 2 - Data Science for the Social World
+##Laura Morales
+###June 28, 2021
+**1. Please clear the environment in R.**
+```{r}
+rm(list=ls(all=TRUE))
+```
+
+**2. Load the college_scorecard dataset in R, and call it “college_scorecard”.**
+```{r}
+library(rio) #rio package to load data
+college_scorecard = import("2021_exam2_data.xlsx", which=4) #load data
+```
+3. Provide summary statistics for the college_scorecard dataset.
+```{r}
+summary(college_scorecard)
+```
+**4. students who graduated from four-year+ colleges and universities located in Texas (state_abbr: “TX”) and Louisiana (state_abbr: “LA”). Call the resulting data frame “small_scorecard”.**
+```{r}
+small_scorecard = subset(college_scorecard, college_scorecard$state_abbr == 'TX' | college_scorecard$state_abbr == 'LA') #subset the colleges based on the states abbreviation
+small_scorecard = subset(small_scorecard, small_scorecard$year >= 2014)#subset the colleges based on the lower limit of the year
+small_scorecard = subset(small_scorecard, small_scorecard$year < 2016)#subset the colleges based on the upper limit of the year
+```
+**5. Collapse the “small_scorecard” data frame to get both (a) the average of number people working who graduated from universities in Texas and Lousiana; and (b) the total number of people working who graduated from universities in Texas and Lousiana. Call your resulting data frame “even_smaller_scorecard”. (Hint: Your resulting data frame should only have two observations–one for Texas, the other for Lousiana.)**
+```{r}
+#load the dplyr library
+library(dplyr)
+#pipe the small score card
+even_smaller_scorecard <-  small_scorecard %>% 
+  na.omit(small_scorecard, select= c("count_not_working", "count_working")) %>% #drop the na values
+  group_by(state_abbr) %>% #group the states 
+  summarize(across(where(is.numeric), sum)) #summarize count the amount of degrees
+```
+**6. Use the “even_smaller_scorecard” data frame to provide a bar graph detail- ing the percent of people working. Make sure to label the axes and provide an appropriate title for the graph. (Hint: you will need to create a new variable to answer this question.)**
+
+```{r}
+even_smaller_scorecard$percent_working <- (even_smaller_scorecard$count_not_working / (even_smaller_scorecard$count_not_working+even_smaller_scorecard$count_working))*100
+library(ggplot2)
+barplot = ggplot(data= even_smaller_scorecard, aes(even_smaller_scorecard$state_abbr, even_smaller_scorecard$percent_working))+
+  geom_bar(stat="identity")+
+  labs(x= "State", 
+       y= "Percent of people working",
+       title= "Percent of students working in the state")
+print(barplot)
+```
+**7. On the basis of your graph, did people who graduated from four-year colleges/universities located in Texas or Louisiana have a better chance of being employed? More broadly, do you think that going to college/university in one state gives people a better chance at getting a job? (Hints: (a) you will want to take a look at the summary statistics of the “even_smaller_scorecard” data frame; and (b) you will want to take a look at the universities included in the “smaller_scorecard”)**
+The people who graduated from colleges and universities located in Texas have a better chance of being employed.
+```{r}
+summary(even_smaller_scorecard) #summary of the two states
+```
+**8. **
+```{r}
+library(rio)
+avocados = import("2021_exam2_data.xlsx", which=2)
+```
+**9. **
+```{r}
+library(tidyverse)
+library(lubridate)
+avocados <- avocados %>%
+dplyr::mutate(year = lubridate::year(avocados$date))
+```
+**10. **
+```{r}
+#add World development indicators (WDI)
+library(WDI) #load WDI package
+deflator = WDI(country = "US", indicator = c("NY.GDP.DEFL.ZS"), start = 1960, end = 2018, extra = FALSE, cache = NULL) #create variable from the package
+library(data.table) #load data table package
+setnames(deflator, "NY.GDP.DEFL.ZS", "deflator") #rename
+deflated_data = left_join(x=avocados,
+                          y=deflator,
+                          by='year') #left join the deflator and avocados dataframs
+deflated_data$deflated_amount = deflated_data$average_price/(deflated_data$deflator/100) #adjust for inflation
+```
+**11. **
+```{r}
+collapsed_avocados <- deflated_data %>% 
+  group_by(year) %>% #group the year 
+  summarize(across(where(is.numeric), mean)) #summarize mean price
+
+```
+**12. **
+```{r}
+wide_avocados <- collapsed_avocados %>% pivot_wider(id_cols = c ( "total_volume", "average_price", "year"), names_from = "year", values_from = "deflated_amount" )#omake the year the columns
+head(wide_avocados)#only see the first five values
+```
+**13. **
+```{r}
+library(data.table)#load library
+setnames(wide_avocados, "total_volume", "avocado_total_volume")#set names to be more descriptive 
+```
+**14. **
+```{r}
+training = import("2021_exam2_data.xlsx", which=3) #load data
+```
+**15. **
+```{r}
+# long_data_frame <- 
+#   training %>% 
+#   pivot_longer(cols = starts_with('re_74','re_75','re_78'),
+#                names_to = "training_program",
+#                names_prefix = "re",
+#                values_to = c('re_74','re_75','re_78'),
+#                values_drop_na = FALSE) %>% 
+#   filter(!(c('re_74','re_75','re_78')==0))
+```
+**16. **
+```{r}
+titanic = import("2021_exam2_data.xlsx", which=1) #load data
+```
+**17. **
+```{r}
+summary(titanic)
+```
+**18. **
+```{r}
+library(gmodels)
+CrossTable(titanic$female, titanic$survived)
+```
+Those who were female died at a rate almost ten times higher than those who were not female.
+**19. **
+```{r}
+summary(titanic)
+```
+**19. **
+```{r}
+titanic <- titanic %>% mutate(first_class = ifelse(class ==  1, "yes", "no"))
+table(titanic$first_class, exclude=TRUE)
+```
